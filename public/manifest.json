@@ -1,0 +1,27 @@
+{
+    "name": "MUI UMKM POS",
+    "short_name": "UMKM POS",
+    "start_url": "/dashboard",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#16A34A",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/images/logo.svg",
+            "type": "image/svg+xml",
+            "sizes": "any",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/images/logo.svg",
+            "type": "image/svg+xml",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/images/logo.svg",
+            "type": "image/svg+xml",
+            "sizes": "512x512"
+        }
+    ]
+}
