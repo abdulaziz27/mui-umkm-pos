@@ -157,5 +157,18 @@
             </a>
         </div>
         @endif
+
+        <!-- Install PWA Link in Sidebar -->
+        <div class="mt-4 pt-4 border-t border-white/10" x-data="{ isInstalled: false }" 
+             x-init="isInstalled = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true" 
+             x-show="!isInstalled">
+            <button @click="$dispatch('trigger-pwa-install')" 
+                    class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-green-100 hover:bg-white/10 hover:text-white transition-colors cursor-pointer text-left">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <span x-show="sidebarOpen" x-transition class="whitespace-nowrap font-medium">Instal Aplikasi POS</span>
+            </button>
+        </div>
     </nav>
 </aside>

@@ -22,6 +22,18 @@
         <!-- Right side -->
         <div class="flex items-center gap-3">
 
+            <!-- PWA Install Button inside Header -->
+            <button x-data="{ isInstalled: false }" 
+                    x-init="isInstalled = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true" 
+                    x-show="!isInstalled" 
+                    @click="$dispatch('trigger-pwa-install')" 
+                    class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-green-700 bg-green-50 hover:bg-green-100 border border-green-200 rounded-lg transition-all cursor-pointer">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Instal App
+            </button>
+
             @if(auth()->check() && !auth()->user()->isSuperAdmin() && auth()->user()->tenant)
             <div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-lg">
                 <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

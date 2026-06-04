@@ -53,6 +53,16 @@
 
                 <!-- Desktop CTA -->
                 <div class="hidden md:flex items-center gap-4">
+                    <button x-data="{ isInstalled: false }" 
+                            x-init="isInstalled = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true" 
+                            x-show="!isInstalled" 
+                            @click="$dispatch('trigger-pwa-install')" 
+                            class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-green-700 bg-green-50 hover:bg-green-100 rounded-xl transition-all border border-green-200/50 cursor-pointer">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Instal App
+                    </button>
                     @auth
                         <a href="{{ url('/dashboard') }}"
                             class="px-5 py-2.5 text-sm font-bold text-green-700 bg-green-50 hover:bg-green-100 rounded-xl transition-colors">Buka
@@ -94,6 +104,18 @@
                     class="text-base font-medium text-gray-700 hover:text-green-600">Katalog Mitra</a>
                 <a href="#panduan" @click="mobileMenuOpen = false"
                     class="text-base font-medium text-gray-700 hover:text-green-600">Cara Bergabung</a>
+                
+                <button x-data="{ isInstalled: false }" 
+                        x-init="isInstalled = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true" 
+                        x-show="!isInstalled" 
+                        @click="mobileMenuOpen = false; $dispatch('trigger-pwa-install')" 
+                        class="w-full inline-flex items-center justify-center gap-1.5 px-4 py-3 text-sm font-bold text-green-700 bg-green-50 hover:bg-green-100 rounded-xl transition-all border border-green-200/50 cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Instal Aplikasi POS
+                </button>
+
                 <hr class="border-gray-100">
                 @auth
                     <a href="{{ url('/dashboard') }}"
@@ -602,6 +624,7 @@
             }
         }"
         x-show="showPrompt"
+        @trigger-pwa-install.window="showPrompt = true; if (!isIOS && deferredPrompt) install()"
         x-transition:enter="transition ease-out duration-300 transform"
         x-transition:enter-start="opacity-0 translate-y-8 sm:translate-y-0 sm:translate-x-8"
         x-transition:enter-end="opacity-100 translate-y-0 sm:translate-x-0"

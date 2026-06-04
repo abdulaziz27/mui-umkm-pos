@@ -125,6 +125,7 @@
             }
         }"
         x-show="showPrompt"
+        @trigger-pwa-install.window="showPrompt = true; if (!isIOS && deferredPrompt) install()"
         x-transition:enter="transition ease-out duration-300 transform"
         x-transition:enter-start="opacity-0 translate-y-8 sm:translate-y-0 sm:translate-x-8"
         x-transition:enter-end="opacity-100 translate-y-0 sm:translate-x-0"
