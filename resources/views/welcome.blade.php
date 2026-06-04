@@ -118,11 +118,11 @@
             <div class="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
                 <!-- Hero Text -->
                 <div class="lg:col-span-6 text-center lg:text-left mb-16 lg:mb-0">
-                    <div
+                    <!-- <div
                         class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 text-green-700 text-sm font-bold mb-6">
                         <span class="flex w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                         Program Resmi Pemberdayaan Ekonomi Umat
-                    </div>
+                    </div> -->
                     <h1 class="text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.15] mb-6">
                         Tingkatkan Kelas <br />
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500">Usaha
