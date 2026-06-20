@@ -236,6 +236,32 @@
         </div>
     </div>
 
+    <!-- Supported By Section -->
+    <div class="border-t border-gray-100 bg-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm font-semibold uppercase tracking-wider text-gray-400 mb-8">Program Ini Diinisiasi & Didukung Oleh</p>
+            <div class="flex flex-wrap justify-center items-center gap-10 md:gap-20 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                <!-- BKPRMI -->
+                <div class="flex items-center gap-3 group cursor-default">
+                    <img src="{{ asset('images/bpkrmi.jpg') }}" alt="BKPRMI Pematangsiantar" class="h-14 w-auto object-contain group-hover:scale-105 transition-transform rounded">
+                    <span class="font-bold text-gray-700 text-lg md:text-xl group-hover:text-green-700 transition-colors">BKPRMI Pematangsiantar</span>
+                </div>
+                <!-- BKMT -->
+                <div class="flex items-center gap-3 group cursor-default">
+                    <img src="{{ asset('images/bkmt.png') }}" alt="BKMT Pematangsiantar" class="h-14 w-auto object-contain group-hover:scale-105 transition-transform rounded">
+                    <span class="font-bold text-gray-700 text-lg md:text-xl group-hover:text-emerald-700 transition-colors">BKMT Pematangsiantar</span>
+                </div>
+                <!-- Bank Indonesia -->
+                <div class="flex items-center gap-3 group cursor-default">
+                    <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-extrabold text-xl shadow-inner border border-blue-200 group-hover:scale-105 transition-transform">
+                        BI
+                    </div>
+                    <span class="font-bold text-gray-700 text-lg md:text-xl group-hover:text-blue-700 transition-colors">Bank Indonesia</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Directory List -->
     <div id="katalog" class="py-24 bg-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
