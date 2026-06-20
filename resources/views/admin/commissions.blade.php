@@ -123,8 +123,8 @@
                             <span class="inline-flex px-2.5 py-1 bg-gray-100 text-gray-700 rounded-lg text-[10px] font-extrabold uppercase">{{ $trx->payment_method }}</span>
                         </td>
                         <td class="py-4 px-6 text-right text-sm text-gray-900 font-bold">Rp {{ number_format($trx->total_amount, 0, ',', '.') }}</td>
-                        <td class="py-4 px-6 text-right text-sm font-extrabold text-green-600">+Rp {{ number_format($trx->platform_fee, 0, ',', '.') }}</td>
-                        <td class="py-4 px-6 text-right text-sm text-gray-500">Rp {{ number_format($trx->net_amount, 0, ',', '.') }}</td>
+                        <td class="py-4 px-6 text-right text-sm font-extrabold text-green-600">-Rp {{ number_format($trx->platform_fee, 0, ',', '.') }}</td>
+                        <td class="py-4 px-6 text-right text-sm text-gray-500">Rp {{ number_format($trx->total_amount - $trx->platform_fee, 0, ',', '.') }}</td>
                     </tr>
                     @empty
                     <tr>

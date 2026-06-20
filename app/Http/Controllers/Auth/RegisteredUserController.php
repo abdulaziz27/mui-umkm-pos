@@ -55,7 +55,6 @@ class RegisteredUserController extends Controller
                 'phone' => $request->tenant_phone,
                 'address' => $request->tenant_address,
                 'status' => 'pending', // Requires Super Admin approval
-                'mdr_fee_percentage' => 2.00, // Default MVP MDR Fee 2%
             ]);
 
             // 2. Create Owner User linked to Tenant

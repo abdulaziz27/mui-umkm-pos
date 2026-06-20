@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MUI UMKM - Platform Ekonomi Umat & Aplikasi Kasir Gratis</title>
+    <title>Daulat Umat - Platform Ekonomi Umat & Aplikasi Kasir Gratis</title>
 
     <!-- PWA Manifest & Meta -->
     <link rel="manifest" href="/manifest.json">
@@ -35,8 +35,8 @@
                                 d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                         </svg>
                     </div>
-                    <span class="text-xl font-extrabold tracking-tight text-gray-900">MUI <span
-                            class="text-green-600">UMKM</span></span>
+                    <span class="text-xl font-extrabold tracking-tight text-gray-900">Daulat <span
+                            class="text-green-600">Umat</span></span>
                 </a>
 
                 <!-- Desktop Menu -->
@@ -157,7 +157,7 @@
                     </h1>
                     <p class="text-lg lg:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                         Sistem Kasir (POS) gratis, manajemen stok, dan laporan keuangan terotomatisasi. Didesain khusus
-                        untuk memajukan pengusaha UMKM di bawah naungan Majelis Ulama Indonesia.
+                        untuk memajukan pengusaha UMKM.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                         <a href="{{ route('register') }}"
@@ -457,7 +457,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Cara Mudah Bergabung</h2>
-                <p class="text-gray-400 text-lg">Hanya butuh 3 langkah untuk mendigitalkan bisnis Anda bersama MUI.</p>
+                <p class="text-gray-400 text-lg">Hanya butuh 3 langkah untuk mendigitalkan bisnis Anda bersama Daulat Umat.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 relative">
@@ -480,7 +480,7 @@
                         2
                     </div>
                     <h4 class="text-xl font-bold mb-2">Proses Verifikasi</h4>
-                    <p class="text-gray-400 text-sm px-4">Tim admin MUI akan meninjau dan memverifikasi profil usaha
+                    <p class="text-gray-400 text-sm px-4">Tim admin akan meninjau dan memverifikasi profil usaha
                         Anda dalam 1x24 jam.</p>
                 </div>
 
@@ -519,11 +519,10 @@
                                     d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                             </svg>
                         </div>
-                        <span class="text-xl font-bold tracking-tight">MUI UMKM POS</span>
+                        <span class="text-xl font-bold tracking-tight">Daulat Umat</span>
                     </div>
                     <p class="text-gray-500 text-sm leading-relaxed max-w-sm mb-6">
-                        Platform Point of Sales dan Direktori Resmi Majelis Ulama Indonesia. Membantu digitalisasi
-                        jutaan UMKM di Indonesia secara gratis.
+                        Daulat Umat by BKPRMI dan BKMT Kota Pematang Siantar bekerja sama dengan Bank Indonesia. Membantu digitalisasi jutaan UMKM di Indonesia secara gratis.
                     </p>
                 </div>
 
@@ -553,14 +552,14 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
-                            Gedung Majelis Ulama Indonesia Pusat<br>Jakarta, Indonesia
+                            Gedung BKPRMI dan BKMT<br>Pematang Siantar, Indonesia
                         </li>
                         <li class="flex items-center gap-3 text-sm text-gray-500">
                             <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
-                            support@mui.or.id
+                            support@daulatumat.id
                         </li>
                     </ul>
                 </div>
@@ -568,7 +567,7 @@
         </div>
         <div class="border-t border-gray-100 py-6 text-center">
             <p class="text-gray-400 text-sm font-medium">
-                &copy; {{ date('Y') }} MUI Pusat. Hak Cipta Dilindungi Undang-Undang.
+                &copy; {{ date('Y') }} Daulat Umat. Hak Cipta Dilindungi Undang-Undang.
             </p>
         </div>
     </footer>
@@ -637,13 +636,13 @@
         <div class="flex items-start gap-3">
             <!-- Logo Icon -->
             <div class="w-12 h-12 rounded-xl bg-green-600 flex-shrink-0 flex items-center justify-center shadow-md shadow-green-600/20">
-                <img src="/images/logo-192.png" alt="MUI UMKM Logo" class="w-10 h-10 object-contain rounded-lg">
+                <img src="/images/logo-192.png" alt="Daulat Umat Logo" class="w-10 h-10 object-contain rounded-lg">
             </div>
             
             <!-- Text details -->
             <div class="flex-1">
                 <h4 class="font-bold text-gray-900 text-sm">Instal Aplikasi POS</h4>
-                <p class="text-xs text-gray-600 mt-0.5 leading-relaxed" x-text="isIOS ? 'Tambahkan aplikasi kasir ini ke layar utama iPhone/iPad Anda untuk penggunaan cepat dan offline.' : 'Pasang aplikasi kasir MUI UMKM di layar perangkat Anda untuk akses lebih mudah dan cepat.'"></p>
+                <p class="text-xs text-gray-600 mt-0.5 leading-relaxed" x-text="isIOS ? 'Tambahkan aplikasi kasir ini ke layar utama iPhone/iPad Anda untuk penggunaan cepat dan offline.' : 'Pasang aplikasi kasir Daulat Umat di layar perangkat Anda untuk akses lebih mudah dan cepat.'"></p>
             </div>
 
             <!-- Close Button -->

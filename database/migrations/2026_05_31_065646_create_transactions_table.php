@@ -18,8 +18,7 @@ return new class extends Migration
             $table->decimal('discount_amount', 15, 2)->default(0);
             $table->decimal('total_amount', 15, 2); // subtotal - discount
 
-            $table->decimal('platform_fee', 15, 2)->default(0); // MDR fee
-            $table->decimal('net_amount', 15, 2); // total_amount - platform_fee
+            $table->decimal('platform_fee', 15, 2)->default(0); // Bukti potongan saldo
 
             $table->string('payment_method')->default('cash');
             $table->enum('payment_status', ['pending', 'paid', 'failed'])->default('paid');

@@ -27,14 +27,16 @@ Route::middleware('auth')->group(function () {
         Route::resource('staff', \App\Http\Controllers\StaffController::class)->except(['show']);
     });
 
-    // POS Engine
-    Route::get('/pos/shift', [\App\Http\Controllers\PosController::class, 'showOpenShift'])->name('pos.shift.show');
-    Route::post('/pos/shift/open', [\App\Http\Controllers\PosController::class, 'openShift'])->name('pos.shift.open');
-    Route::get('/pos/shift/close', [\App\Http\Controllers\PosController::class, 'showCloseShift'])->name('pos.shift.close.show');
-    Route::post('/pos/shift/close', [\App\Http\Controllers\PosController::class, 'closeShift'])->name('pos.shift.close');
-    Route::get('/pos', [\App\Http\Controllers\PosController::class, 'index'])->name('pos.index');
-    Route::post('/pos/checkout', [\App\Http\Controllers\PosController::class, 'checkout'])->name('pos.checkout');
-    Route::post('/pos/apply-promo', [\App\Http\Controllers\PosController::class, 'applyPromo'])->name('pos.apply-promo');
+    // POS Engine (Dilindungi Middleware)
+    Route::middleware('tenant.active')->group(function () {
+        Route::get('/pos/shift', [\App\Http\Controllers\PosController::class, 'showOpenShift'])->name('pos.shift.show');
+        Route::post('/pos/shift/open', [\App\Http\Controllers\PosController::class, 'openShift'])->name('pos.shift.open');
+        Route::get('/pos/shift/close', [\App\Http\Controllers\PosController::class, 'showCloseShift'])->name('pos.shift.close.show');
+        Route::post('/pos/shift/close', [\App\Http\Controllers\PosController::class, 'closeShift'])->name('pos.shift.close');
+        Route::get('/pos', [\App\Http\Controllers\PosController::class, 'index'])->name('pos.index');
+        Route::post('/pos/checkout', [\App\Http\Controllers\PosController::class, 'checkout'])->name('pos.checkout');
+        Route::post('/pos/apply-promo', [\App\Http\Controllers\PosController::class, 'applyPromo'])->name('pos.apply-promo');
+    });
 
     // Reports
     Route::get('/reports/transactions', [\App\Http\Controllers\ReportController::class, 'index'])->name('report.transactions');
@@ -52,6 +54,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/tenants/{id}/suspend', [\App\Http\Controllers\AdminController::class, 'suspendTenant'])->name('admin.tenants.suspend');
     Route::get('/admin/commissions', [\App\Http\Controllers\AdminController::class, 'commissions'])->name('admin.commissions');
     Route::put('/admin/tenants/{id}/commission', [\App\Http\Controllers\AdminController::class, 'updateCommission'])->name('admin.tenants.commission.update');
+
+    // Top-Up Saldo Deposit
+    Route::get('/topups', [\App\Http\Controllers\TopupController::class, 'index'])->name('topups.index');
+    Route::get('/topups/success', [\App\Http\Controllers\TopupController::class, 'success'])->name('topups.success');
+    Route::post('/topups', [\App\Http\Controllers\TopupController::class, 'store'])->name('topups.store');
+    Route::post('/topups/{topup}/approve', [\App\Http\Controllers\TopupController::class, 'approve'])->name('topups.approve');
+    Route::post('/topups/{topup}/reject', [\App\Http\Controllers\TopupController::class, 'reject'])->name('topups.reject');
 });
 
 require __DIR__.'/auth.php';

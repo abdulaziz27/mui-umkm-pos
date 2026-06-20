@@ -62,8 +62,7 @@ class TransactionSeeder extends Seeder
                 
                 // MDR fee calculations (1.5% for Bengkel)
                 $paymentMethod = rand(0, 10) > 4 ? 'qris' : 'cash';
-                $platformFee = $paymentMethod === 'qris' ? round($totalAmount * ($bengkel->mdr_fee_percentage / 100), 2) : 0.00;
-                $netAmount = $totalAmount - $platformFee;
+                $platformFee = 100.00; // Flat fee 100 Rupiah
 
                 $receiptNum = 'TRX/BKM/' . $createdAt->format('Ymd') . '/' . str_pad($i + 1, 4, '0', STR_PAD_LEFT);
 
@@ -76,7 +75,6 @@ class TransactionSeeder extends Seeder
                     'discount_amount' => $discount,
                     'total_amount' => $totalAmount,
                     'platform_fee' => $platformFee,
-                    'net_amount' => $netAmount,
                     'payment_method' => $paymentMethod,
                     'payment_status' => 'paid',
                     'created_at' => $createdAt,
@@ -131,8 +129,7 @@ class TransactionSeeder extends Seeder
                 
                 // MDR fee calculations (0.7% for Kopi QRIS transactions)
                 $paymentMethod = rand(0, 10) > 3 ? 'qris' : 'cash';
-                $platformFee = $paymentMethod === 'qris' ? round($totalAmount * ($kopi->mdr_fee_percentage / 100), 2) : 0.00;
-                $netAmount = $totalAmount - $platformFee;
+                $platformFee = 100.00;
 
                 $receiptNum = 'TRX/KKS/' . $createdAt->format('Ymd') . '/' . str_pad($i + 1, 4, '0', STR_PAD_LEFT);
 
@@ -145,7 +142,6 @@ class TransactionSeeder extends Seeder
                     'discount_amount' => $discount,
                     'total_amount' => $totalAmount,
                     'platform_fee' => $platformFee,
-                    'net_amount' => $netAmount,
                     'payment_method' => $paymentMethod,
                     'payment_status' => 'paid',
                     'created_at' => $createdAt,
@@ -196,8 +192,7 @@ class TransactionSeeder extends Seeder
                 
                 // MDR fee calculations (1% for Retail QRIS)
                 $paymentMethod = rand(0, 10) > 5 ? 'qris' : 'cash';
-                $platformFee = $paymentMethod === 'qris' ? round($totalAmount * ($oleholeh->mdr_fee_percentage / 100), 2) : 0.00;
-                $netAmount = $totalAmount - $platformFee;
+                $platformFee = 100.00;
 
                 $receiptNum = 'TRX/OOH/' . $createdAt->format('Ymd') . '/' . str_pad($i + 1, 4, '0', STR_PAD_LEFT);
 
@@ -210,7 +205,6 @@ class TransactionSeeder extends Seeder
                     'discount_amount' => $discount,
                     'total_amount' => $totalAmount,
                     'platform_fee' => $platformFee,
-                    'net_amount' => $netAmount,
                     'payment_method' => $paymentMethod,
                     'payment_status' => 'paid',
                     'created_at' => $createdAt,

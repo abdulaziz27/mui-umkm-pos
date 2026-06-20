@@ -124,38 +124,21 @@
                                     {{ $tenant->phone }}
                                 </td>
                                 <td class="py-4 px-6">
-                                    @if(($tenant->platform_fee_type ?? 'percentage') === 'fixed')
-                                        <span class="inline-flex px-2 py-1 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold">
-                                            Rp {{ number_format($tenant->platform_fee_fixed ?? 0, 0, ',', '.') }} / trx
-                                        </span>
-                                    @else
-                                        <span class="inline-flex px-2 py-1 bg-green-50 text-green-700 rounded-lg text-xs font-bold">
-                                            {{ number_format($tenant->mdr_fee_percentage ?? 0, 1) }}%
-                                        </span>
-                                    @endif
+                                    <span class="inline-flex px-2 py-1 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold">
+                                        Rp {{ number_format($tenant->platform_fee_rate ?? 0, 0, ',', '.') }} / trx
+                                    </span>
                                     <button @click="showCommission = !showCommission" class="ml-1 text-gray-400 hover:text-green-600 transition-colors" title="Edit Komisi">
                                         <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
                                     </button>
 
                                     <!-- Inline Commission Editor -->
                                     <div x-show="showCommission" x-transition class="mt-3">
-                                        <form action="{{ route('admin.tenants.commission.update', $tenant->id) }}" method="POST" class="p-3 bg-gray-50 border border-gray-200 rounded-xl space-y-3" x-data="{ feeType: '{{ $tenant->platform_fee_type ?? 'percentage' }}' }">
+                                        <form action="{{ route('admin.tenants.commission.update', $tenant->id) }}" method="POST" class="p-3 bg-gray-50 border border-gray-200 rounded-xl space-y-3">
                                             @csrf
                                             @method('PUT')
                                             <div>
-                                                <label class="block text-xs font-bold text-gray-600 mb-1">Tipe Komisi</label>
-                                                <select name="platform_fee_type" x-model="feeType" class="w-full border-gray-200 focus:border-green-500 focus:ring-green-500 rounded-lg text-sm bg-white">
-                                                    <option value="percentage">Persentase (%)</option>
-                                                    <option value="fixed">Fixed per Transaksi (Rp)</option>
-                                                </select>
-                                            </div>
-                                            <div x-show="feeType === 'percentage'">
-                                                <label class="block text-xs font-bold text-gray-600 mb-1">Persentase (%)</label>
-                                                <input type="number" name="mdr_fee_percentage" value="{{ $tenant->mdr_fee_percentage ?? 0 }}" step="0.01" min="0" max="100" class="w-full border-gray-200 focus:border-green-500 focus:ring-green-500 rounded-lg text-sm bg-white" placeholder="Contoh: 2.5">
-                                            </div>
-                                            <div x-show="feeType === 'fixed'">
-                                                <label class="block text-xs font-bold text-gray-600 mb-1">Nominal per Transaksi (Rp)</label>
-                                                <input type="number" name="platform_fee_fixed" value="{{ $tenant->platform_fee_fixed ?? 0 }}" step="100" min="0" class="w-full border-gray-200 focus:border-green-500 focus:ring-green-500 rounded-lg text-sm bg-white" placeholder="Contoh: 5000">
+                                                <label class="block text-xs font-bold text-gray-600 mb-1">Tarif Potongan per Transaksi (Rp)</label>
+                                                <input type="number" name="platform_fee_rate" value="{{ $tenant->platform_fee_rate ?? 0 }}" step="100" min="0" class="w-full border-gray-200 focus:border-green-500 focus:ring-green-500 rounded-lg text-sm bg-white" placeholder="Contoh: 100">
                                             </div>
                                             <div class="flex gap-2">
                                                 <button type="submit" class="flex-1 py-1.5 bg-green-600 hover:bg-green-700 text-white text-xs font-bold rounded-lg transition-colors">Simpan</button>

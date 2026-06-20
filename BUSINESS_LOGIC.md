@@ -14,17 +14,16 @@ Sistem menggunakan pendekatan hibrida untuk mengakomodasi bisnis retail (seperti
 - Jika produk bertipe **`physical`**: Saat terjadi transaksi sukses, sistem **wajib** memotong `stock_quantity`.
 - Jika produk bertipe **`service`**: Sistem **mengabaikan** proses potong stok (bypass inventory logic).
 
-## 3. Logika Monetisasi (Platform Fee / MDR)
-Aplikasi POS ini gratis digunakan, namun platform mengambil komisi (fee) dari setiap transaksi sukses.
+## 3. Logika Monetisasi (Sistem Saldo Deposit Nominal)
+Aplikasi POS ini menggunakan model prabayar berupa sistem **Saldo Deposit Nominal** (Top-Up). Platform tidak memotong dana transaksi penjualan secara langsung, melainkan UMKM harus memiliki saldo deposit (dalam Rupiah) untuk dapat mencatat transaksi.
 
 **Rumus Kalkulasi Saat Checkout:**
-1. Default Platform Fee (misal: 1% atau Rp 500 flat). Konfigurasi ini disimpan di *environment variables* atau tabel pengaturan global.
-2. Jika tabel `tenants` memiliki nilai khusus pada `mdr_fee_percentage`, maka nilai tersebut akan me-override persentase default.
-3. Saat *checkout* POS:
+1. UMKM dapat melakukan Top-Up saldo nominal secara bebas (misal Rp 10.000). Nilai ini disimpan pada kolom `credit_balance` di tabel `tenants`. Tarif potongan per transaksi ditentukan oleh `platform_fee_rate` (misal Rp 100).
+2. Saat *checkout* POS:
    - `total_amount` = `subtotal` - `discount`
-   - `platform_fee` = `total_amount` * (MDR % / 100)
-   - `net_amount` (Hak UMKM) = `total_amount` - `platform_fee`
-4. Angka-angka di atas dikunci dan disimpan secara statis di tabel `transactions` untuk keperluan audit dan *settlement* pencairan dana.
+   - Uang pembayaran dari pelanggan sebesar `total_amount` 100% menjadi milik UMKM.
+3. Begitu transaksi diselesaikan (sukses), sistem akan mengurangi `credit_balance` milik UMKM tersebut sebesar `platform_fee_rate`, lalu mencatat nilai potongan tersebut ke kolom `platform_fee` di tabel `transactions`.
+4. Jika `credit_balance` lebih kecil dari `platform_fee_rate`, maka kasir tidak dapat memproses transaksi baru sampai UMKM melakukan *Top Up* saldo deposit ke penyedia platform.
 
 ## 4. Public Directory Portal
 - Direktori ini *read-only* bagi publik.

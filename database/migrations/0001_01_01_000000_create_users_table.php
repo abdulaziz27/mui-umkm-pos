@@ -21,9 +21,8 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('logo_path')->nullable();
             $table->enum('status', ['pending', 'active', 'suspended'])->default('pending');
-            $table->decimal('mdr_fee_percentage', 5, 2)->nullable();
-            $table->enum('platform_fee_type', ['percentage', 'fixed'])->default('percentage');
-            $table->decimal('platform_fee_fixed', 12, 2)->default(0);
+            $table->decimal('credit_balance', 15, 2)->default(0); // Saldo deposit Rupiah
+            $table->decimal('platform_fee_rate', 15, 2)->default(100); // Misal Rp 100 per transaksi
 
             // Sertifikasi Halal MUI
             $table->string('halal_certificate_number')->nullable();

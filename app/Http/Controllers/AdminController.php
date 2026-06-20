@@ -97,22 +97,16 @@ class AdminController extends Controller
         }
 
         $request->validate([
-            'platform_fee_type' => 'required|in:percentage,fixed',
-            'mdr_fee_percentage' => 'required_if:platform_fee_type,percentage|numeric|min:0|max:100',
-            'platform_fee_fixed' => 'required_if:platform_fee_type,fixed|numeric|min:0',
+            'platform_fee_rate' => 'required|numeric|min:0',
         ]);
 
         $tenant = Tenant::findOrFail($id);
         $tenant->update([
-            'platform_fee_type' => $request->platform_fee_type,
-            'mdr_fee_percentage' => $request->platform_fee_type === 'percentage' ? $request->mdr_fee_percentage : $tenant->mdr_fee_percentage,
-            'platform_fee_fixed' => $request->platform_fee_type === 'fixed' ? $request->platform_fee_fixed : $tenant->platform_fee_fixed,
+            'platform_fee_rate' => $request->platform_fee_rate,
         ]);
 
-        $label = $request->platform_fee_type === 'percentage'
-            ? "{$request->mdr_fee_percentage}%"
-            : 'Rp ' . number_format($request->platform_fee_fixed, 0, ',', '.');
+        $label = 'Rp ' . number_format($request->platform_fee_rate, 0, ',', '.');
 
-        return back()->with('success', "Komisi untuk {$tenant->name} berhasil diperbarui menjadi {$label} ({$request->platform_fee_type}).");
+        return back()->with('success', "Tarif potongan flat untuk {$tenant->name} berhasil diperbarui menjadi {$label} per transaksi.");
     }
 }

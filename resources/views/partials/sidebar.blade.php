@@ -120,6 +120,15 @@
                 <span x-show="sidebarOpen" x-transition class="whitespace-nowrap">Audit Shift (Kasir)</span>
             </a>
 
+            @if($user->isTenantOwner())
+            <a href="{{ route('topups.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('topups.*') ? 'bg-white/20 text-white font-semibold' : 'text-green-100 hover:bg-white/10 hover:text-white' }}">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span x-show="sidebarOpen" x-transition class="whitespace-nowrap">Top-Up Saldo</span>
+            </a>
+            @endif
+
             <hr class="border-white/10 my-2">
 
             @if($user->isTenantOwner())
@@ -154,6 +163,13 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                 </svg>
                 <span x-show="sidebarOpen" x-transition class="whitespace-nowrap">Laporan Komisi</span>
+            </a>
+            
+            <a href="{{ route('topups.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('topups.*') ? 'bg-white/20 text-white font-semibold' : 'text-green-100 hover:bg-white/10 hover:text-white' }}">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span x-show="sidebarOpen" x-transition class="whitespace-nowrap">Verifikasi Top-Up</span>
             </a>
         </div>
         @endif

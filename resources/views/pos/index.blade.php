@@ -156,11 +156,8 @@
                         <span class="font-medium text-green-600">- <span x-text="formatRupiah(discountAmount())"></span></span>
                     </div>
                     <div class="flex justify-between text-sm">
-                        <span class="text-gray-500 flex items-center gap-1" x-show="feeType === 'percentage'">
-                            Platform Fee MUI (<span x-text="mdrPercentage"></span>%)
-                        </span>
-                        <span class="text-gray-500 flex items-center gap-1" x-show="feeType === 'fixed'" style="display: none;">
-                            Platform Fee MUI (Fixed)
+                        <span class="text-gray-500 flex items-center gap-1">
+                            Platform Fee MUI (Flat/Trx)
                         </span>
                         <span class="font-medium text-red-500">
                             - <span x-text="formatRupiah(platformFee())"></span>
@@ -328,7 +325,7 @@
                         <p class="mb-2 italic">{{ $tenant->receipt_footer }}</p>
                         @endif
                         <p>Terima Kasih Atas Kunjungan Anda</p>
-                        <p class="mt-2 text-[10px]">Powered by MUI UMKM POS</p>
+                        <p class="mt-2 text-[10px]">Powered by Daulat Umat</p>
                     </div>
                 </div>
 
@@ -396,9 +393,7 @@
                 cart: [],
                 searchQuery: '',
                 activeCategory: 'all',
-                feeType: '{{ $tenant->platform_fee_type ?? "percentage" }}',
-                feeFixed: {{ $tenant->platform_fee_fixed ?? 0 }},
-                mdrPercentage: {{ $tenant->mdr_fee_percentage ?? 0 }},
+                platformFeeRate: {{ $tenant->platform_fee_rate ?? 0 }},
                 discountType: 'none',
                 discountValue: 0,
                 promoInput: '',
@@ -655,7 +650,7 @@
                           .alignCenter()
                           .newline()
                           .line('Terima Kasih!')
-                          .line('Powered by MUI UMKM POS')
+                          .line('Powered by Daulat Umat')
                           .feed()
                           .cut();
 
@@ -797,10 +792,7 @@
                 },
 
                 platformFee() {
-                    if (this.feeType === 'fixed') {
-                        return this.feeFixed;
-                    }
-                    return (this.totalAmount() * this.mdrPercentage) / 100;
+                    return this.platformFeeRate;
                 },
 
                 netIncome() {

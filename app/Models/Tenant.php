@@ -17,9 +17,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
     'phone',
     'logo_path',
     'status',
-    'mdr_fee_percentage',
-    'platform_fee_type',
-    'platform_fee_fixed',
+    'credit_balance',
+    'platform_fee_rate',
     'halal_certificate_number',
     'halal_certificate_expires_at',
     'receipt_header',
@@ -38,8 +37,8 @@ class Tenant extends Model
         return [
             'halal_certificate_expires_at' => 'date',
             'operating_hours' => 'array',
-            'mdr_fee_percentage' => 'decimal:2',
-            'platform_fee_fixed' => 'decimal:2',
+            'credit_balance' => 'decimal:2',
+            'platform_fee_rate' => 'decimal:2',
         ];
     }
 

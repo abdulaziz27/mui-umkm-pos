@@ -29,7 +29,8 @@ class TenantSeeder extends Seeder
             'address' => 'Jl. Raya Sleman No. 12, Yogyakarta',
             'phone' => '081234567890',
             'status' => 'active',
-            'mdr_fee_percentage' => 1.50, // 1.5% MDR fee
+            'credit_balance' => 10000,
+            'platform_fee_rate' => 100,
         ]);
 
         // Create Tenant 1 Owner
@@ -59,7 +60,8 @@ class TenantSeeder extends Seeder
             'address' => 'Jl. Kaliurang KM 5, Yogyakarta',
             'phone' => '089876543210',
             'status' => 'active',
-            'mdr_fee_percentage' => 0.70, // 0.7% MDR fee for QRIS/F&B standard
+            'credit_balance' => 50000,
+            'platform_fee_rate' => 100,
             'halal_certificate_number' => 'ID34110001234560822',
             'halal_certificate_expires_at' => '2028-12-31',
             'receipt_header' => 'Senja Lebih Indah dengan Secangkir Kopi',
@@ -102,7 +104,8 @@ class TenantSeeder extends Seeder
             'address' => 'Jl. Malioboro No. 99, Yogyakarta',
             'phone' => '087766554433',
             'status' => 'active',
-            'mdr_fee_percentage' => 1.00, // 1% MDR fee
+            'credit_balance' => 0,
+            'platform_fee_rate' => 100,
         ]);
 
         // Create Tenant 3 Owner

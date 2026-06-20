@@ -172,7 +172,7 @@ class DashboardController extends Controller
         $periodTransactions = (clone $trxQuery)->count();
 
         // Pendapatan Bersih di Periode Ini
-        $periodNetIncome = (clone $trxQuery)->sum('net_amount');
+        $periodNetIncome = $periodRevenue - (clone $trxQuery)->sum('platform_fee');
 
         // Total Produk Aktif (Keseluruhan)
         $totalProducts = Product::where('tenant_id', $tenant->id)

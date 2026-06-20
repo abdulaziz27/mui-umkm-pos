@@ -91,7 +91,7 @@
                         </div>
                         <div class="flex justify-between">
                             <span class="text-base font-bold text-green-700">Pendapatan Bersih UMKM</span>
-                            <span class="text-xl font-bold text-green-600">Rp {{ number_format($transaction->net_amount, 0, ',', '.') }}</span>
+                            <span class="text-xl font-bold text-green-600">Rp {{ number_format($transaction->total_amount - $transaction->platform_fee, 0, ',', '.') }}</span>
                         </div>
                     </div>
                 </div>

@@ -100,7 +100,7 @@
                     </td>
                     <td class="py-3 px-2 text-right font-medium text-gray-900">{{ number_format($trx->subtotal, 0, ',', '.') }}</td>
                     <td class="py-3 px-2 text-right text-red-600">-{{ number_format($trx->platform_fee, 0, ',', '.') }}</td>
-                    <td class="py-3 px-2 text-right font-bold text-gray-900">{{ number_format($trx->net_amount, 0, ',', '.') }}</td>
+                    <td class="py-3 px-2 text-right font-bold text-gray-900">{{ number_format($trx->total_amount - $trx->platform_fee, 0, ',', '.') }}</td>
                 </tr>
                 @empty
                 <tr>
@@ -112,7 +112,7 @@
 
         <!-- Footer Note -->
         <div class="mt-12 pt-8 border-t border-gray-300 text-center text-xs text-gray-500">
-            <p class="font-bold text-gray-700 uppercase mb-1">MUI UMKM POS Platform</p>
+            <p class="font-bold text-gray-700 uppercase mb-1">Daulat Umat Platform</p>
             <p>Laporan ini dihasilkan secara otomatis oleh sistem dan sah tanpa tanda tangan.</p>
         </div>
     </div>

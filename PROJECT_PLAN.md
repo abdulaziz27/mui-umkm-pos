@@ -34,7 +34,7 @@ Saat mengeksekusi instruksi, AI (Gemini) harus SELALU mengacu pada aturan beriku
 5. **FOLLOW BOOST GUIDELINES**: Tetap ikuti Laravel Boost Guidelines yang ada di rules (Laravel 12 structure, Pint formatting, TDD, dll).
 
 ## 5. Roadmap Development (Next Steps)
-- [ ] Fase 1: Setup skeleton Laravel 12 & arsitektur Database (Multi-tenancy UMKM & User Roles).
+- [x] Fase 1: Setup skeleton Laravel 12 & arsitektur Database (Multi-tenancy UMKM & User Roles).
 - [ ] Fase 2: Auth System & Approval Flow (Super Admin & UMKM).
 - [ ] Fase 3: Modul Master Data Produk & Jasa yang generik.
 - [ ] Fase 4: Engine Transaksi & Kasir POS + Logika Kalkulasi Fee.

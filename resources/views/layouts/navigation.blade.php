@@ -15,6 +15,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if(auth()->user()->role === 'tenant_owner' || auth()->user()->role === 'superadmin')
+                        <x-nav-link :href="route('topups.index')" :active="request()->routeIs('topups.*')">
+                            {{ __('Saldo & Top-Up') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -70,6 +75,11 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if(auth()->user()->role === 'tenant_owner' || auth()->user()->role === 'superadmin')
+                <x-responsive-nav-link :href="route('topups.index')" :active="request()->routeIs('topups.*')">
+                    {{ __('Saldo & Top-Up') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

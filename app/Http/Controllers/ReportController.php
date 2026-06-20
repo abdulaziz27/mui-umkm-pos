@@ -45,7 +45,7 @@ class ReportController extends Controller
 
         $totalOmzet = $statsQuery->sum('total_amount');
         $totalPlatformFee = $statsQuery->sum('platform_fee');
-        $totalNetIncome = $statsQuery->sum('net_amount');
+        $totalNetIncome = $totalOmzet - $totalPlatformFee;
         $totalTransactions = $statsQuery->count();
 
         return view('reports.transactions.index', compact(
@@ -131,7 +131,7 @@ class ReportController extends Controller
                 $row['Total']    = $trx->subtotal;
                 $row['Diskon']   = $trx->discount_amount;
                 $row['Fee']      = $trx->platform_fee;
-                $row['Bersih']   = $trx->net_amount;
+                $row['Bersih']   = $trx->total_amount - $trx->platform_fee;
 
                 fputcsv($file, array($row['Tanggal'], $row['No. Resi'], $row['Metode'], $row['Status'], $row['Total'], $row['Diskon'], $row['Fee'], $row['Bersih']));
             }
@@ -149,7 +149,7 @@ class ReportController extends Controller
 
         $totalOmzet = $transactions->sum('total_amount');
         $totalPlatformFee = $transactions->sum('platform_fee');
-        $totalNetIncome = $transactions->sum('net_amount');
+        $totalNetIncome = $totalOmzet - $totalPlatformFee;
         $totalTransactionsCount = $transactions->count();
 
         return view('reports.transactions.print', compact(

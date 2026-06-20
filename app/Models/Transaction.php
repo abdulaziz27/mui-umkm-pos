@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
     'discount_amount',
     'total_amount',
     'platform_fee',
-    'net_amount',
     'payment_method',
     'payment_status',
 ])]
@@ -32,7 +31,6 @@ class Transaction extends Model
             'discount_amount' => 'decimal:2',
             'total_amount' => 'decimal:2',
             'platform_fee' => 'decimal:2',
-            'net_amount' => 'decimal:2',
         ];
     }
 

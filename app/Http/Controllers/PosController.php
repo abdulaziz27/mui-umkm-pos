@@ -69,8 +69,11 @@ class PosController extends Controller
         }
 
         $tenant = auth()->user()->tenant;
-        $feeType = $tenant->platform_fee_type ?? 'percentage';
-        $mdrPercentage = $tenant->mdr_fee_percentage ?? 0;
+        $platformFeeRate = $tenant->platform_fee_rate ?? 0;
+
+        if ($tenant->credit_balance < $platformFeeRate) {
+            return back()->with('error', 'Saldo deposit Anda tidak mencukupi untuk memproses transaksi. Silakan Top-Up saldo terlebih dahulu.');
+        }
 
         DB::beginTransaction();
 
@@ -122,13 +125,7 @@ class PosController extends Controller
 
             $totalAmount = $subtotal - $discountAmount;
             
-            // Hitung Platform Fee berdasarkan tipe komisi yang diatur Super Admin
-            if ($feeType === 'fixed') {
-                $platformFee = $tenant->platform_fee_fixed ?? 0;
-            } else {
-                $platformFee = ($totalAmount * $mdrPercentage) / 100;
-            }
-            $netAmount = $totalAmount - $platformFee;
+            $platformFee = $platformFeeRate;
 
             // Generate Receipt Number
             $receiptNumber = 'TRX-' . strtoupper(Str::random(8));
@@ -141,10 +138,12 @@ class PosController extends Controller
                 'discount_amount' => $discountAmount,
                 'total_amount' => $totalAmount,
                 'platform_fee' => $platformFee,
-                'net_amount' => $netAmount,
                 'payment_method' => $request->payment_method,
                 'payment_status' => 'paid',
             ]);
+
+            // Potong saldo deposit UMKM
+            $tenant->decrement('credit_balance', $platformFee);
 
             foreach ($itemsData as &$itemData) {
                 $itemData['transaction_id'] = $transaction->id;

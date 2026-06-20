@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="title">{{ $category->name }} - {{ config('app.name', 'MUI UMKM POS') }}</x-slot>
+    <x-slot name="title">{{ $category->name }} - {{ config('app.name', 'Daulat Umat') }}</x-slot>
 
     @section('page-title', __('products.category_details'))
 

@@ -11,7 +11,8 @@ Dokumen ini mendefinisikan struktur tabel utama (MySQL) yang dirancang secara sp
 - `description` (text, nullable)
 - `address`, `phone`, `logo_path`
 - `status` (enum: pending, active, suspended) - Butuh verifikasi Super Admin
-- `mdr_fee_percentage` (decimal, nullable) - Kustom fee untuk tenant ini (jika null, pakai default platform)
+- `credit_balance` (decimal) - Saldo deposit Rupiah untuk membayar fee platform (default 0)
+- `platform_fee_rate` (decimal) - Tarif potongan flat per transaksi (default 100)
 - `created_at`, `updated_at`
 
 ### `users` (Staff & Admin)
@@ -49,8 +50,7 @@ Dokumen ini mendefinisikan struktur tabel utama (MySQL) yang dirancang secara sp
 - `subtotal` (decimal)
 - `discount_amount` (decimal)
 - `total_amount` (decimal) - Total yang dibayar pelanggan
-- `platform_fee` (decimal) - Nominal potongan/komisi untuk platform MUI
-- `net_amount` (decimal) - Nominal bersih yang diterima UMKM (`total_amount` - `platform_fee`)
+- `platform_fee` (decimal) - Bukti potong saldo deposit atas transaksi ini
 - `payment_method` (string) - Cash, QRIS, Transfer, dll
 - `payment_status` (enum: pending, paid, failed)
 - `created_at`, `updated_at`

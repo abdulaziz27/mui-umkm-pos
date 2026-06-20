@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? config('app.name', 'MUI UMKM POS') }}</title>
+    <title>{{ $title ?? config('app.name', 'Daulat Umat') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -77,7 +77,7 @@
             <!-- Footer -->
             <footer class="py-4 px-6 border-t border-border bg-surface">
                 <div class="text-center text-sm text-muted">
-                    &copy; {{ date('Y') }} {{ config('app.name', 'MUI UMKM POS') }}. All rights reserved.
+                    &copy; {{ date('Y') }} {{ config('app.name', 'Daulat Umat') }}. All rights reserved.
                 </div>
             </footer>
         </div>
