@@ -58,6 +58,12 @@
                                 <p class="text-xs text-gray-500 mt-1">Minimal pengisian saldo adalah Rp 10.000.</p>
                             </div>
 
+                            <div class="mb-4">
+                                <label for="payment_proof" class="block text-sm font-medium text-gray-700">Bukti Transfer Manual (Opsional)</label>
+                                <input type="file" name="payment_proof" id="payment_proof" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" accept="image/*">
+                                <p class="text-xs text-gray-500 mt-1">Unggah bukti transfer jika Anda membayar manual (langsung ke Admin). Kosongkan jika ingin menggunakan pembayaran otomatis (Xendit).</p>
+                            </div>
+
                             <div class="flex justify-end">
                                 <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                                     Lanjut ke Pembayaran

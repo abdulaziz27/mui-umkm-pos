@@ -17,6 +17,8 @@ class Topup extends Model
         'payment_proof_path',
         'status',
         'approved_by',
+        'xendit_invoice_id',
+        'payment_url',
     ];
 
     public function tenant(): BelongsTo

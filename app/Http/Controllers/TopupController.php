@@ -28,48 +28,57 @@ class TopupController extends Controller
     {
         $request->validate([
             'amount' => 'required|numeric|min:10000',
+            'payment_proof' => 'nullable|image|max:2048',
         ]);
 
         $user = auth()->user();
-        $secretKey = config('xendit.secret_key');
         
-        if (!$secretKey) {
-            return back()->withErrors('Xendit Secret Key belum dikonfigurasi. Hubungi Admin.');
+        $paymentProofPath = null;
+        if ($request->hasFile('payment_proof')) {
+            $paymentProofPath = $request->file('payment_proof')->store('topup_proofs', 'public');
         }
 
         $topup = Topup::create([
             'tenant_id' => $user->tenant_id,
             'amount' => $request->amount,
             'status' => 'pending',
+            'payment_proof_path' => $paymentProofPath,
         ]);
 
-        $invoiceId = 'TOPUP-' . $topup->id;
+        $secretKey = config('xendit.secret_key');
+        
+        // Coba integrasi Xendit jika dikonfigurasi DAN user tidak upload bukti manual
+        if ($secretKey && !$paymentProofPath) {
+            $invoiceId = 'TOPUP-' . $topup->id;
 
-        $response = Http::withBasicAuth($secretKey, '')
-            ->post('https://api.xendit.co/v2/invoices', [
-                'external_id' => $invoiceId,
-                'amount' => $request->amount,
-                'description' => 'Top-Up Saldo Deposit Daulat Umat',
-                'customer' => [
-                    'given_names' => $user->name,
-                    'email' => $user->email,
-                ],
-                'success_redirect_url' => route('topups.success', ['topup_id' => $topup->id]),
-                'failure_redirect_url' => route('topups.index'),
-            ]);
+            $response = Http::withBasicAuth($secretKey, '')
+                ->post('https://api.xendit.co/v2/invoices', [
+                    'external_id' => $invoiceId,
+                    'amount' => $request->amount,
+                    'description' => 'Top-Up Saldo Deposit Daulat Umat',
+                    'customer' => [
+                        'given_names' => $user->name,
+                        'email' => $user->email,
+                    ],
+                    'success_redirect_url' => route('topups.success', ['topup_id' => $topup->id]),
+                    'failure_redirect_url' => route('topups.index'),
+                ]);
 
-        if ($response->successful()) {
-            $data = $response->json();
-            $topup->update([
-                'xendit_invoice_id' => $data['id'],
-                'payment_url' => $data['invoice_url'],
-            ]);
-            
-            return redirect($data['invoice_url']);
+            if ($response->successful()) {
+                $data = $response->json();
+                $topup->update([
+                    'xendit_invoice_id' => $data['id'],
+                    'payment_url' => $data['invoice_url'],
+                ]);
+                
+                return redirect($data['invoice_url']);
+            }
+
+            // Jika gagal buat invoice, kita biarkan topup tetap pending untuk diproses manual
+            return redirect()->route('topups.index')->with('success', 'Pengajuan tercatat, namun Xendit sedang bermasalah. Anda dapat melunasi secara manual atau menunggu persetujuan.');
         }
 
-        $topup->delete();
-        return back()->withErrors('Gagal membuat invoice Xendit: ' . $response->body());
+        return redirect()->route('topups.index')->with('success', 'Pengajuan isi saldo berhasil dicatat. Silakan tunggu konfirmasi Admin atau selesaikan transfer manual Anda.');
     }
 
     public function success(Request $request)
