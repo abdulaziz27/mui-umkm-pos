@@ -77,13 +77,27 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             @if($topup->status === 'pending')
                                                 <div class="flex justify-end gap-2">
-                                                    <form action="{{ route('topups.approve', $topup->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menyetujui pengisian saldo ini? Saldo UMKM akan langsung bertambah.');">
+                                                    <form id="form-approve-{{ $topup->id }}" action="{{ route('topups.approve', $topup->id) }}" method="POST">
                                                         @csrf
-                                                        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-xs font-bold">Approve</button>
+                                                        <button type="button" @click="$dispatch('confirm', {
+                                                            title: 'Setujui Pengisian Saldo?',
+                                                            message: 'Yakin ingin menyetujui pengisian saldo ini? Saldo UMKM akan langsung bertambah.',
+                                                            variant: 'primary',
+                                                            confirmText: 'Ya, Setujui',
+                                                            cancelText: 'Batal',
+                                                            onConfirm: () => document.getElementById('form-approve-{{ $topup->id }}').submit()
+                                                        })" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-xs font-bold">Approve</button>
                                                     </form>
-                                                    <form action="{{ route('topups.reject', $topup->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menolak pengajuan ini?');">
+                                                    <form id="form-reject-{{ $topup->id }}" action="{{ route('topups.reject', $topup->id) }}" method="POST">
                                                         @csrf
-                                                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs font-bold">Reject</button>
+                                                        <button type="button" @click="$dispatch('confirm', {
+                                                            title: 'Tolak Pengajuan?',
+                                                            message: 'Yakin ingin menolak pengajuan ini? Status akan menjadi ditolak dan saldo tidak bertambah.',
+                                                            variant: 'danger',
+                                                            confirmText: 'Ya, Tolak',
+                                                            cancelText: 'Batal',
+                                                            onConfirm: () => document.getElementById('form-reject-{{ $topup->id }}').submit()
+                                                        })" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs font-bold">Reject</button>
                                                     </form>
                                                 </div>
                                             @else
